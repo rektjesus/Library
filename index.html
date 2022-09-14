@@ -15,11 +15,11 @@
         <form class="" action="#">
             <legend>Add new book</legend>
             <div aria-label="Title"></div>
-            <input type="text" id="title" name="title" placeholder="Title">
+            <input type="text" id="title" name="title" placeholder="Title" required>
             <div aria-label="Author"></div>
-            <input type="text" id="author" name="author" placeholder="Author">
+            <input type="text" id="author" name="author" placeholder="Author" required>
             <div aria-label="Pages"></div>
-            <input type="number" id="pages" name="pages" placeholder="Pages">
+            <input type="number" id="pages" name="pages" placeholder="Pages" required>
             <span>
                 <label for="read_check">Have you read it?</label>
                 <input type="checkbox" name="read_check" id="check">
@@ -28,7 +28,7 @@
         </form>
         <div class="navbar"></div>
         <div class="main">
-            <div class="card read">
+            <div class="card">
                 <h4 class="title">The Hobbit</h4>
                 <p class="author">J. R. R. Tolkien</p>
                 <p class="pages">295</p>

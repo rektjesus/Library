@@ -198,12 +198,7 @@ template {
     box-sizing: border-box;
 }
 
-.container {
-    display: grid;
-    height: 100vh;
-    width: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 40px 1fr 20px;
+html {
     background: linear-gradient(to bottom,
             hsl(223.18, 100%, 79.02%) 0%,
             hsl(222.78, 100%, 79.07%) 5.7%,
@@ -221,6 +216,14 @@ template {
             hsl(192.69, 100%, 82.76%) 89.2%,
             hsl(191.47, 100%, 82.89%) 94.9%,
             hsl(191.03, 100%, 82.94%) 100%);
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 1fr 20px;
 }
 
 /* _________________________FORM_____________________________________________ */
@@ -322,6 +325,8 @@ input:focus {
 }
 
 .main .card span {
+    display: flex;
+    gap: 15px;
     margin-top: auto;
     margin-bottom: 15px;
 }
