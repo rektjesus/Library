@@ -51,7 +51,6 @@ function checkRead(readInp) {
 
 btnAdd.addEventListener('click', () => {
     addBookToLibrary(myLibrary);
+    console.log(myLibrary);
 });
-
-
 
