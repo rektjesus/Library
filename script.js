@@ -11,7 +11,11 @@ let titleInp = document.getElementById('title');
 let authorInp = document.getElementById('author');
 let pagesInp = document.getElementById('pages');
 let readInp = document.getElementById('check');
-const btnAdd = document.querySelector('#add_book');
+const submit = document.querySelector('#submit');
+const btnRead = document.querySelector('#read_btn');
+const btnRemove = document.querySelector('#remove_btn');
+const modal = document.querySelector('form');
+const btnAdd = document.querySelector('.add-btn');
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -20,11 +24,16 @@ function Book(title, author, pages, read) {
     this.read = read;
 };
 
-function displayBook() {
-
+function openModal() {
+    modal.classList.add('show');
 };
 
-function updateDisplay() {
+function closeModal() {
+    modal.classList.remove('show');
+    modal.reset();
+};
+
+function displayBook() {
 
 };
 
@@ -49,8 +58,13 @@ function checkRead(readInp) {
     }
 };
 
-btnAdd.addEventListener('click', () => {
+submit.addEventListener('click', () => {
     addBookToLibrary(myLibrary);
+    closeModal();
     console.log(myLibrary);
 });
+
+btnAdd.addEventListener('click', () => {
+    openModal();
+})
 

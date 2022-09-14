@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <form class="show" action="#">
+        <form class="" action="#">
             <legend>Add new book</legend>
             <div aria-label="Title"></div>
             <input type="text" id="title" name="title" placeholder="Title">
@@ -24,7 +24,7 @@
                 <label for="read_check">Have you read it?</label>
                 <input type="checkbox" name="read_check" id="check">
             </span>
-            <button type="button" id="add_book">Add book</button>
+            <button type="button" id="submit">Add book</button>
         </form>
         <div class="navbar"></div>
         <div class="main">
@@ -32,6 +32,10 @@
                 <h4 class="title">The Hobbit</h4>
                 <p class="author">J. R. R. Tolkien</p>
                 <p class="pages">295</p>
+                <span>
+                    <button type="button" id="read_btn">Read</button>
+                    <button type="button" id="remove_btn">Remove</button>
+                </span>
             </div>
         </div>
         <div class="footer"></div>
