@@ -14,8 +14,9 @@ let readInp = document.getElementById('check');
 const submit = document.querySelector('#submit');
 const btnRead = document.querySelector('#read_btn');
 const btnRemove = document.querySelector('#remove_btn');
-const modal = document.querySelector('form');
 const btnAdd = document.querySelector('.add-btn');
+const modal = document.querySelector('form');
+
 
 // Book constructor
 function Book(title, author, pages, read) {
@@ -38,6 +39,8 @@ function closeModal() {
 
 // Displays new book on a new card 
 function displayBook(book) {
+
+    // Create card element in DOM
     let main = document.querySelector('.main');
     let card = document.createElement('div');
     let h4 = document.createElement('h4');
@@ -66,36 +69,34 @@ function displayBook(book) {
     span.appendChild(btn1);
     span.appendChild(btn2);
 
+    // Apply input values to card
     h4.textContent = book.title;
     p1.textContent = book.author;
     p2.textContent = book.pages;
+
+    // Change card color if read/unread
+    if (book.read === true) {
+        card.classList.add('read');
+    }
+};
+
+function isInLibrary(newBook, library) {
+
 };
 
 function addBookToLibrary(myLibrary) {
     let title = titleInp.value;
     let author = authorInp.value;
     let pages = pagesInp.value;
-    let read = checkRead(readInp);
-
+    let read = readInp.checked;
     let newBook = new Book(title, author, pages, read);
-
     myLibrary.push(newBook);
-    closeModal();
-    displayBook(newBook);
-};
-
-function checkRead(readInp) {
-    let read = readInp.value;
-    if (read === 'on') {
-        return true;
-    }
-    else {
-        return false;
-    }
 };
 
 submit.addEventListener('click', () => {
     addBookToLibrary(myLibrary);
+    displayBook(myLibrary.slice(-1).pop());
+    closeModal();
     console.log(myLibrary);
 });
 
