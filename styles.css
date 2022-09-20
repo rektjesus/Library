@@ -186,6 +186,8 @@ template {
     --color-bg-secondary: #ffffff7f;
     --color-font-primary: #333333;
     --color-font-secondary: #ffffff;
+    --color-accent-primary: #4d8eff;
+    --color-accent-secondary: #bdbdbd;
 }
 
 @font-face {
@@ -302,6 +304,29 @@ input:focus {
     transition: 0.2s;
 }
 
+#submit {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+#close_modal {
+    transition: 0.1s;
+    height: 25px;
+    width: 25px;
+    position: relative;
+    left: 120px;
+    top: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-accent-secondary);
+    cursor: pointer;
+}
+
+#close_modal:active {
+    scale: 0.95;
+    transition: 0.1s;
+}
+
 /* _________________________NAVBAR___________________________________________ */
 
 .navbar {
@@ -367,7 +392,7 @@ input:focus {
     bottom: 30px;
     right: 10px;
     border: 1px solid #cdcdcd;
-    background: #4d8eff;
+    background: var(--color-accent-primary);
     color: #ffffff;
     border-radius: 25px;
     overflow: hidden;

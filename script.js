@@ -9,6 +9,7 @@ const btnRead = document.querySelector('#read_btn');
 const btnRemove = document.querySelector('#remove_btn');
 const btnAdd = document.querySelector('.add-btn');
 const modal = document.querySelector('.modal');
+const closeModalBtn = document.querySelector('#close_modal');
 
 
 // Book constructor
@@ -34,6 +35,23 @@ function closeModal() {
     authorInp.value = '';
     pagesInp.value = '';
     readInp.checked = false;
+};
+
+// Check if the input fields are empty
+function validateForm() {
+    let titleErr = document.querySelector('#title_error');
+    let authorErr = document.querySelector('#author_error');
+    let pagesErr = document.querySelector('#pages_error')
+    if (titleInp.value === '' && !titleErr.classList.contains('show')) titleErr.classList.add('show');
+    if (authorInp.value === '' && !authorErr.classList.contains('show')) authorErr.classList.add('show');
+    if (pagesInp.value === '' && !pagesErr.classList.contains('show')) pagesErr.classList.add('show');
+
+    if (titleInp.value === '' || pagesInp.value === '' || authorInp.value === '') {
+        return false;
+    }
+    else {
+        return true;
+    }
 };
 
 // Displays new book on a new card 
@@ -96,23 +114,6 @@ function isInLibrary(newBook, library) {
 
 };
 
-// Check if the input fields are empty
-function validateForm() {
-    let titleErr = document.querySelector('#title_error');
-    let authorErr = document.querySelector('#author_error');
-    let pagesErr = document.querySelector('#pages_error')
-    if (titleInp.value === '' && !titleErr.classList.contains('show')) titleErr.classList.add('show');
-    if (authorInp.value === '' && !authorErr.classList.contains('show')) authorErr.classList.add('show');
-    if (pagesInp.value === '' && !pagesErr.classList.contains('show')) pagesErr.classList.add('show');
-
-    if (titleInp.value === '' || pagesInp.value === '' || authorInp.value === '') {
-        return false;
-    }
-    else {
-        return true;
-    }
-};
-
 // Removes the book from the page
 function removeBook(index) {
     let book = document.querySelector(`.card[data-number='${index}']`);
@@ -151,5 +152,9 @@ submit.addEventListener('click', () => {
 
 btnAdd.addEventListener('click', () => {
     openModal();
+});
+
+closeModalBtn.addEventListener('click', () => {
+    closeModal();
 });
 
