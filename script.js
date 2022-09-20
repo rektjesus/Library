@@ -1,11 +1,4 @@
-let myLibrary = [
-    {
-        title: "A Game of Thrones",
-        author: "George R. R. Martin",
-        pages: 695,
-        read: false
-    }
-];
+let myLibrary = [];
 
 let titleInp = document.getElementById('title');
 let authorInp = document.getElementById('author');
@@ -53,32 +46,45 @@ function displayBook(book) {
     let p1 = document.createElement('p');
     let p2 = document.createElement('p');
     let span = document.createElement('span');
-    let btn1 = document.createElement('button');
-    let btn2 = document.createElement('button');
+    let readBtn = document.createElement('button');
+    let removeBtn = document.createElement('button');
 
     card.className = 'card';
+    card.setAttribute('data-number', myLibrary.length);
     h4.className = 'title';
     p1.className = 'author';
     p2.className = 'pages';
-    btn1.setAttribute('type', 'button');
-    btn2.setAttribute('type', 'button');
-    btn1.setAttribute('id', 'read_btn');
-    btn2.setAttribute('id', 'remove_btn');
-    btn1.textContent = 'Read';
-    btn2.textContent = 'Remove';
+    readBtn.setAttribute('type', 'button');
+    removeBtn.setAttribute('type', 'button');
+    readBtn.setAttribute('id', 'read_btn');
+    removeBtn.setAttribute('id', 'remove_btn');
+    readBtn.textContent = 'Read';
+    removeBtn.textContent = 'Remove';
+    readBtn.setAttribute('data-number', myLibrary.length)
+    removeBtn.setAttribute('data-number', myLibrary.length)
 
     main.appendChild(card);
     card.appendChild(h4);
     card.appendChild(p1);
     card.appendChild(p2);
     card.appendChild(span);
-    span.appendChild(btn1);
-    span.appendChild(btn2);
+    span.appendChild(readBtn);
+    span.appendChild(removeBtn);
 
     // Apply input values to card
     h4.textContent = book.title;
     p1.textContent = book.author;
     p2.textContent = book.pages;
+
+    // Assign remove button to remove the card it is located in
+    removeBtn.addEventListener('click', () => {
+        removeBook(removeBtn.getAttribute('data-number'));
+    });
+
+    // Assign read button to change read state of card
+    readBtn.addEventListener('click', () => {
+        readBook(readBtn.getAttribute('data-number'));
+    });
 
     // Change card color if read/unread
     if (book.read === true) {
@@ -90,6 +96,7 @@ function isInLibrary(newBook, library) {
 
 };
 
+// Check if the input fields are empty
 function validateForm() {
     let titleErr = document.querySelector('#title_error');
     let authorErr = document.querySelector('#author_error');
@@ -104,8 +111,27 @@ function validateForm() {
     else {
         return true;
     }
+};
+
+// Removes the book from the page
+function removeBook(index) {
+    let book = document.querySelector(`.card[data-number='${index}']`);
+    book.remove();
+    myLibrary.splice(myLibrary.length - 1, 1);
+};
+
+// Changes the books read/unread status
+function readBook(index) {
+    let book = document.querySelector(`.card[data-number='${index}']`);
+    if (book.classList.contains('read')) {
+        book.classList.remove('read');
+    }
+    else {
+        book.classList.add('read');
+    }
 }
 
+// Adds book to the library array
 function addBookToLibrary(myLibrary) {
     let title = titleInp.value;
     let author = authorInp.value;
@@ -125,5 +151,5 @@ submit.addEventListener('click', () => {
 
 btnAdd.addEventListener('click', () => {
     openModal();
-})
+});
 
