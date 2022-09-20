@@ -182,8 +182,8 @@ template {
 /* END OF CSS RESET */
 
 :root {
-    --color-bg-primary: #ffffff7f;
-    --color-bg-secondary: #ffffffd9;
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #ffffff7f;
     --color-font-primary: #333333;
     --color-font-secondary: #ffffff;
 }
@@ -228,10 +228,12 @@ html {
 
 /* _________________________FORM_____________________________________________ */
 
-form {
+.modal {
     visibility: hidden;
     transition: 0.2s;
+}
 
+form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -257,7 +259,7 @@ form legend {
     font-size: 1.2rem;
 }
 
-form.show {
+.modal.show {
     transition: 0.2s;
     visibility: visible;
 }
@@ -280,6 +282,24 @@ input:focus {
     box-shadow: inset 3px 3px 10px #dbdbdb,
         inset -3px -3px 10px #ffffff;
 
+}
+
+#title_error,
+#author_error,
+#pages_error {
+    color: #be0000;
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    visibility: hidden;
+    transition: 0.2s;
+}
+
+#title_error.show,
+#author_error.show,
+#pages_error.show {
+    visibility: visible;
+    transition: 0.2s;
 }
 
 /* _________________________NAVBAR___________________________________________ */

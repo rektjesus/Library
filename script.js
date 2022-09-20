@@ -15,7 +15,7 @@ const submit = document.querySelector('#submit');
 const btnRead = document.querySelector('#read_btn');
 const btnRemove = document.querySelector('#remove_btn');
 const btnAdd = document.querySelector('.add-btn');
-const modal = document.querySelector('form');
+const modal = document.querySelector('.modal');
 
 
 // Book constructor
@@ -33,8 +33,14 @@ function openModal() {
 
 // Closes new book pop up
 function closeModal() {
+    document.querySelector('#title_error').classList.remove('show');
+    document.querySelector('#author_error').classList.remove('show');
+    document.querySelector('#pages_error').classList.remove('show');
     modal.classList.remove('show');
-    modal.reset();
+    titleInp.value = '';
+    authorInp.value = '';
+    pagesInp.value = '';
+    readInp.checked = false;
 };
 
 // Displays new book on a new card 
@@ -84,6 +90,22 @@ function isInLibrary(newBook, library) {
 
 };
 
+function validateForm() {
+    let titleErr = document.querySelector('#title_error');
+    let authorErr = document.querySelector('#author_error');
+    let pagesErr = document.querySelector('#pages_error')
+    if (titleInp.value === '' && !titleErr.classList.contains('show')) titleErr.classList.add('show');
+    if (authorInp.value === '' && !authorErr.classList.contains('show')) authorErr.classList.add('show');
+    if (pagesInp.value === '' && !pagesErr.classList.contains('show')) pagesErr.classList.add('show');
+
+    if (titleInp.value === '' || pagesInp.value === '' || authorInp.value === '') {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 function addBookToLibrary(myLibrary) {
     let title = titleInp.value;
     let author = authorInp.value;
@@ -94,6 +116,7 @@ function addBookToLibrary(myLibrary) {
 };
 
 submit.addEventListener('click', () => {
+    if (validateForm() === false) return;
     addBookToLibrary(myLibrary);
     displayBook(myLibrary.slice(-1).pop());
     closeModal();

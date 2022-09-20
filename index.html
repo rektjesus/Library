@@ -12,20 +12,25 @@
 
 <body>
     <div class="container">
-        <form class="" action="#">
-            <legend>Add new book</legend>
-            <div aria-label="Title"></div>
-            <input type="text" id="title" name="title" placeholder="Title" required maxlength="69">
-            <div aria-label="Author"></div>
-            <input type="text" id="author" name="author" placeholder="Author" required maxlength="69">
-            <div aria-label="Pages"></div>
-            <input type="number" id="pages" name="pages" placeholder="Pages" required maxlength="10000">
-            <span>
-                <label for="read_check">Have you read it?</label>
-                <input type="checkbox" name="read_check" id="check">
-            </span>
-            <button type="submit" id="submit">Add book</button>
-        </form>
+        <div class="modal">
+            <form class="" action="#">
+                <legend>Add new book</legend>
+                <div aria-label="Title"></div>
+                <p id="title_error">Please enter a title.</p>
+                <input type="text" id="title" name="title" placeholder="Title" required maxlength="69">
+                <div aria-label="Author"></div>
+                <p id="author_error">Please enter an author.</p>
+                <input type="text" id="author" name="author" placeholder="Author" required maxlength="69">
+                <div aria-label="Pages"></div>
+                <p id="pages_error">Please enter a number of pages.</p>
+                <input type="number" id="pages" name="pages" placeholder="Pages" required maxlength="10000">
+                <span>
+                    <label for="read_check">Have you read it?</label>
+                    <input type="checkbox" name="read_check" id="check">
+                </span>
+                <button type="button" id="submit">Add book</button>
+            </form>
+        </div>
         <div class="navbar"></div>
         <div class="main">
             <div class="card">
