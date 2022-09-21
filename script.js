@@ -30,6 +30,7 @@ function closeModal() {
     document.querySelector('#title_error').classList.remove('show');
     document.querySelector('#author_error').classList.remove('show');
     document.querySelector('#pages_error').classList.remove('show');
+    document.querySelector('#book_error').classList.remove('show');
     modal.classList.remove('show');
     titleInp.value = '';
     authorInp.value = '';
@@ -41,12 +42,22 @@ function closeModal() {
 function validateForm() {
     let titleErr = document.querySelector('#title_error');
     let authorErr = document.querySelector('#author_error');
-    let pagesErr = document.querySelector('#pages_error')
+    let pagesErr = document.querySelector('#pages_error');
+    let bookErr = document.querySelector('#book_error');
+    let found;
     if (titleInp.value === '' && !titleErr.classList.contains('show')) titleErr.classList.add('show');
     if (authorInp.value === '' && !authorErr.classList.contains('show')) authorErr.classList.add('show');
     if (pagesInp.value === '' && !pagesErr.classList.contains('show')) pagesErr.classList.add('show');
 
-    if (titleInp.value === '' || pagesInp.value === '' || authorInp.value === '') {
+    // Check if the book is already in library
+    myLibrary.some((el) => {
+        if (el.title === titleInp.value && el.author === authorInp.value) {
+            bookErr.classList.add('show');
+            return found = true;
+        }
+    });
+
+    if (titleInp.value === '' || pagesInp.value === '' || authorInp.value === '' || found === true) {
         return false;
     }
     else {
@@ -108,10 +119,6 @@ function displayBook(book) {
     if (book.read === true) {
         card.classList.add('read');
     }
-};
-
-function isInLibrary(newBook, library) {
-
 };
 
 // Removes the book from the page
