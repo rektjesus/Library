@@ -436,6 +436,7 @@ input:focus {
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
+    z-index: 2;
 }
 
 .add-btn:hover {
@@ -809,4 +810,16 @@ button#remove_btn:hover {
 
 button#remove_btn:hover::before {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .main {
+        max-width: 100vw;
+    }
+
+    .icon-btn {
+        scale: 0.70;
+        top: -5px;
+        right: -3px;
+    }
 }
