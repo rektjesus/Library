@@ -117,7 +117,7 @@ function displayBook(book) {
 
     // Change card color if read/unread
     if (book.read === true) {
-        card.classList.add('read');
+        readBtn.classList.add('read');
     }
 };
 
@@ -130,12 +130,12 @@ function removeBook(index) {
 
 // Changes the books read/unread status
 function readBook(index) {
-    let book = document.querySelector(`.card[data-number='${index}']`);
-    if (book.classList.contains('read')) {
-        book.classList.remove('read');
+    let btn = document.querySelector(`#read_btn[data-number='${index}']`);
+    if (btn.classList.contains('read')) {
+        btn.classList.remove('read');
     }
     else {
-        book.classList.add('read');
+        btn.classList.add('read');
     }
 }
 

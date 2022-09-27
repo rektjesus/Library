@@ -188,7 +188,7 @@ template {
     --color-font-secondary: #ffffff;
     --color-font-third: #5f5f5f;
     --color-accent-primary: #4d8eff;
-    --color-read: #e4ffe4;
+    --color-read: #7eff7e;
 }
 
 @font-face {
@@ -374,10 +374,6 @@ input:focus {
 .main .card .pages {
     width: 100%;
     text-align: center;
-}
-
-.main .card.read {
-    background: var(--color-read);
 }
 
 .main .card span {
@@ -739,6 +735,11 @@ button#read_btn {
     overflow: hidden;
 }
 
+button#read_btn.read {
+    color: var(--color-font-third);
+    background-color: var(--color-read);
+}
+
 button#read_btn::before {
     content: "";
     position: absolute;
@@ -754,13 +755,25 @@ button#read_btn::before {
     transition: all 250ms;
 }
 
+button#read_btn.read::before {
+    background-color: var(--color-read);
+}
+
 button#read_btn:hover {
+    color: var(--color-font-secondary);
+}
+
+button#read_btn.read:hover {
     color: var(--color-font-secondary);
 }
 
 
 button#read_btn:hover::before {
     width: 100%;
+}
+
+button#read_btn.read:hover::before {
+    width: 0%;
 }
 
 /* Remove btn */
