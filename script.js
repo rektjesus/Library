@@ -10,6 +10,8 @@ const btnRemove = document.querySelector('#remove_btn');
 const btnAdd = document.querySelector('.add-btn');
 const modal = document.querySelector('.modal');
 const closeModalBtn = document.querySelector('#close_modal');
+const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
+
 
 
 // Book constructor
@@ -137,7 +139,16 @@ function readBook(index) {
     else {
         btn.classList.add('read');
     }
-}
+};
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.querySelector(':root').classList.add('dark');
+    }
+    else {
+        document.querySelector(':root').classList.remove('dark');
+    }
+};
 
 // Adds book to the library array
 function addBookToLibrary(myLibrary) {
@@ -164,4 +175,6 @@ btnAdd.addEventListener('click', () => {
 closeModalBtn.addEventListener('click', () => {
     closeModal();
 });
+
+toggleSwitch.addEventListener('change', switchTheme);
 
