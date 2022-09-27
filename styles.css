@@ -211,13 +211,9 @@ template {
     --color-border: #4e4e4e;
 }
 
-@font-face {
-    font-family: 'Poppins', sans-serif;
-    /* src: url(../library/font/Oxygen-Regular.ttf); */
-}
-
 * {
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 html {
@@ -931,4 +927,5 @@ button#remove_btn:hover::before {
     button#submit {
         width: 150px;
     }
+
 }
