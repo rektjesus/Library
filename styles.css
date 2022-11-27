@@ -224,13 +224,14 @@ html {
 body {
     margin: 0;
     height: 100vh;
+    height: -webkit-fill-available;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     display: grid;
-    height: 100vh;
+    height: 100%;
     height: -webkit-fill-available;
     grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr 30px;
