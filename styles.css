@@ -230,7 +230,7 @@ body {
 
 .container {
     display: grid;
-    height: 100vh;
+    height: calc(100% - 30px);
     height: -webkit-fill-available;
     grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr 30px;
