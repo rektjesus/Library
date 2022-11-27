@@ -224,6 +224,7 @@ html {
 body {
     margin: 0;
     height: 100vh;
+    height: -webkit-fill-available;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -928,6 +929,14 @@ button#remove_btn:hover::before {
         max-width: 100vw;
     }
 
+    .container {
+        display: grid;
+        height: 100vh;
+        height: -webkit-fill-available;
+        grid-template-columns: 1fr;
+        grid-template-rows: 40px 1fr;
+    }
+
     .icon-btn {
         scale: 0.70;
         top: -5px;
@@ -1019,6 +1028,22 @@ button#remove_btn:hover::before {
         box-shadow: inset 1px 1px 10px var(--color-shadow-a),
             inset -1px -1px 10px var(--color-shadow-b);
         color: var(--color-font-primary);
+    }
+
+    .footer {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.95rem;
+        font-family: inherit;
+        font-weight: bold;
+        background: var(--color-bg-secondary);
+        color: var(--color-font-third);
+        box-shadow: 3px 3px 6px var(--color-shadow-a),
+            -3px -3px 6px var(--color-shadow-a);
+        backdrop-filter: blur(5px);
+        grid-row: 3 / 4;
+        grid-column: 1 / 1;
     }
 
 }
