@@ -232,7 +232,6 @@ body {
 .container {
     display: grid;
     height: 100%;
-    height: -webkit-fill-available;
     grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr 30px;
 }
