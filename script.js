@@ -15,11 +15,12 @@ const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 
 
 // Book constructor
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = id;
 };
 
 // Opens new book pop up
@@ -81,7 +82,7 @@ function displayBook(book) {
     let removeBtn = document.createElement('button');
 
     card.className = 'card';
-    card.setAttribute('data-number', myLibrary.length);
+    card.setAttribute('data-number', book.id);
     h4.className = 'title';
     p1.className = 'author';
     p2.className = 'pages';
@@ -91,8 +92,8 @@ function displayBook(book) {
     removeBtn.setAttribute('id', 'remove_btn');
     readBtn.textContent = 'Read';
     removeBtn.textContent = 'Remove';
-    readBtn.setAttribute('data-number', myLibrary.length)
-    removeBtn.setAttribute('data-number', myLibrary.length)
+    readBtn.setAttribute('data-number', book.id)
+    removeBtn.setAttribute('data-number', book.id)
 
     main.appendChild(card);
     card.appendChild(h4);
@@ -109,12 +110,12 @@ function displayBook(book) {
 
     // Assign remove button to remove the card it is located in
     removeBtn.addEventListener('click', () => {
-        removeBook(removeBtn.getAttribute('data-number'));
+        removeBook(book.id);
     });
 
     // Assign read button to change read state of card
     readBtn.addEventListener('click', () => {
-        readBook(readBtn.getAttribute('data-number'));
+        readBook(book.id);
     });
 
     // Change card color if read/unread
@@ -128,6 +129,9 @@ function removeBook(index) {
     let book = document.querySelector(`.card[data-number='${index}']`);
     book.remove();
     myLibrary.splice(myLibrary.length - 1, 1);
+    const books = JSON.parse(sessionStorage.getItem('library'));
+    books.splice(books.length - 1, 1);
+    sessionStorage.setItem('library', JSON.stringify(myLibrary));
 };
 
 // Changes the books read/unread status
@@ -139,8 +143,15 @@ function readBook(index) {
     else {
         btn.classList.add('read');
     }
+    const books = JSON.parse(sessionStorage.getItem('library'));
+    const chosenObject = books.find(object => object.id === index);
+    if (chosenObject) {
+        chosenObject.read = !chosenObject.read;
+    }
+    sessionStorage.setItem('library', JSON.stringify(books));
 };
 
+// Dark/Light mode change
 function switchTheme(e) {
     if (e.target.checked) {
         document.querySelector(':root').classList.add('dark');
@@ -156,8 +167,10 @@ function addBookToLibrary(myLibrary) {
     let author = authorInp.value;
     let pages = pagesInp.value;
     let read = readInp.checked;
-    let newBook = new Book(title, author, pages, read);
+    let id = myLibrary.length;
+    let newBook = new Book(title, author, pages, read, id);
     myLibrary.push(newBook);
+    sessionStorage.setItem('library', JSON.stringify(myLibrary));
 };
 
 submit.addEventListener('click', () => {
@@ -188,11 +201,11 @@ function hasTouch() {
 
 if (hasTouch()) { // remove all the :hover stylesheets
     try { // prevent exception on browsers not supporting DOM styleSheets properly
-        for (var si in document.styleSheets) {
-            var styleSheet = document.styleSheets[si];
+        for (let si in document.styleSheets) {
+            let styleSheet = document.styleSheets[si];
             if (!styleSheet.rules) continue;
 
-            for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+            for (let ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
                 if (!styleSheet.rules[ri].selectorText) continue;
 
                 if (styleSheet.rules[ri].selectorText.match(':hover')) {
@@ -202,3 +215,19 @@ if (hasTouch()) { // remove all the :hover stylesheets
         }
     } catch (ex) { }
 }
+
+// Loads up books from storage on refresh
+function onLoad(myLibrary) {
+    const books = JSON.parse(sessionStorage.getItem('library'))
+    if (books) {
+        myLibrary = books.map((book) => {
+            displayBook(book, book.id);
+        })
+    }
+    else {
+        myLibrary = []
+    }
+
+}
+
+onLoad(myLibrary)
